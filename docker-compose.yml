@@ -1,0 +1,22 @@
+version: "3.1"
+
+networks:
+  default:
+  nginx_main:
+    external: true
+
+services:
+
+    jenkins:
+        build: ./jenkins_container/
+        volumes:
+         - ./jenkins_container/var/jenkins_home:/var/jenkins_home
+        ports:
+                - "8080:8080"
+                - "50000:50000"
+        restart: unless-stopped
+        networks:
+          default:
+          nginx_main:
+            ipv4_address: 172.16.0.11
+
