@@ -1,0 +1,9 @@
+jdk-tool:1.2
+script-security:1.50
+command-launcher:1.3
+structs:1.17
+bouncycastle-api:2.17
+credentials:2.1.18
+ssh-credentials:1.14
+jsch:0.1.55
+ssh:2.6.1
