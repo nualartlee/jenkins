@@ -9,14 +9,19 @@ services:
 
     jenkins:
         build: ./jenkins_container/
-        volumes:
-         - ./jenkins_container/var/jenkins_home:/var/jenkins_home
-        ports:
-                - "8080:8080"
-                - "50000:50000"
         restart: unless-stopped
         networks:
           default:
           nginx_main:
             ipv4_address: 172.16.0.11
+        secrets:
+          - jenkins-user
+          - jenkins-pass
 
+secrets:
+  certbot_email:
+    file: ./secrets/certbot_email.txt
+  jenkins-user:
+    file: ./secrets/jenkins-user.txt
+  jenkins-pass:
+    file: ./secrets/jenkins-pass.txt

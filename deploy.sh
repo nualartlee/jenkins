@@ -10,7 +10,7 @@
 # set up before running this script
 
 # Import common functions
-source ./common.sh
+source scripts/common.sh
 
 # Print header
 clear
@@ -32,22 +32,16 @@ echo
 git pull
 check_errs $? "Unable to pull from remote repository"
 
-# Create a directory to store passwords
-if [ -e secrets ]
+# Run any custom build script
+if [ -e scripts/build.sh ]
 then
-    echo "secrets directory already exists"
-else
-    echo "Creating secrets directory"
-    mkdir secrets
-    check_errs $? "Failed creating secrets directory"
-fi
-chmod 660 secrets
-check_errs $? "Failed setting secret directory permissions"
+    echo "Running custom build script"
+    scripts/build.sh
+    check_errs $? "Custom build script failed"
 
-# Create passwords
-#create_password secrets/postgres_password.txt 27
-#create_password secrets/django_secret_key.txt 47
-#create_password secrets/django_admin_pass.txt 27
+else
+    echo "No custom build scripts"
+fi
 
 # Ensure docker is running
 service docker start

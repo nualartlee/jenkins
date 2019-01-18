@@ -7,7 +7,7 @@
 #
 
 # Import common functions
-source ./common.sh
+source scripts/common.sh
 
 # Print header
 clear
@@ -37,22 +37,15 @@ check_errs $? "Unable to git-reset previous version from repository"
 git stash
 check_errs $? "Unable to stash changes in repository"
 
-# Create a directory to store passwords
-if [ -e secrets ]
+# Run any custom build script
+if [ -e scripts/build.sh ]
 then
-    echo "secrets directory already exists"
+    echo "Running custom build script"
+    scripts/build.sh
+    check_errs $? "Custom build script failed"
 else
-    echo "Creating secrets directory"
-    mkdir secrets
-    check_errs $? "Failed creating secrets directory"
+    echo "No custom build scripts"
 fi
-chmod 660 secrets
-check_errs $? "Failed setting secret directory permissions"
-
-# Create passwords
-#create_password secrets/postgres_password.txt 27
-#create_password secrets/django_secret_key.txt 47
-#create_password secrets/django_admin_pass.txt 27
 
 # Ensure docker is running
 service docker start
