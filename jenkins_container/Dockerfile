@@ -1,8 +1,6 @@
 FROM jenkins/jenkins:lts-alpine
 
-VOLUME /var/jenkins_home
-
-#RUN chown -R jenkins:jenkins /var/jenkins_home
+VOLUME /var/jenkins_home:jenkins_home
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
