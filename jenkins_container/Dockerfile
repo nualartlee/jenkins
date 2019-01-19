@@ -2,6 +2,8 @@ FROM jenkins/jenkins:lts-alpine
 
 #VOLUME jenkins_home:/var/jenkins_home:
 
+RUN chown -r jenkins:jenkins /var/jenkins_home
+
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 COPY security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
