@@ -17,6 +17,8 @@ services:
         secrets:
           - jenkins-user
           - jenkins-pass
+        volumes:
+          - jenkins_home:/var/jenkins_home
 
 secrets:
   certbot_email:
@@ -25,3 +27,6 @@ secrets:
     file: ./secrets/jenkins-user.txt
   jenkins-pass:
     file: ./secrets/jenkins-pass.txt
+
+volumes:
+  jenkins_home:
