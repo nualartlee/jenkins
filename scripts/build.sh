@@ -27,7 +27,7 @@ else
     echo "creating jenkins ssh key"
     ssh-keygen -t ed25519 -f secrets/jenkins-key -q -N ""
 fi
-chmod 611 secrets/jenkins-key
+chmod 644 secrets/jenkins-key
 check_errs $? "Failed setting jenkins-key permissions"
 
 # Ensure docker is running
