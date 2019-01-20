@@ -20,6 +20,7 @@ check_errs $? "Failed setting secret directory permissions"
 # Create passwords
 echo "manager" > secrets/jenkins-user.txt
 create_password secrets/jenkins-pass.txt 27
+ssh-keygen -t ed25519 -f secrets/jenkins-key -q -N ""
 
 # Ensure docker is running
 service docker start
