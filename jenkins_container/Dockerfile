@@ -2,9 +2,12 @@ FROM jenkins/jenkins:lts-alpine
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
+USER root
 RUN mkdir /.ssh
 RUN ssh-keygen -f /.ssh/jenkins-key -q -N ""
 RUN chown -R jenkins:jenkins /var/jenkins_home/.ssh
+USER jenkins
+
 COPY security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
 COPY init_credentials.groovy /usr/share/jenkins/ref/init.groovy.d/init_credentials.groovy
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
