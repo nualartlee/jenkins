@@ -4,8 +4,8 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 COPY create_ssh_keys.sh /usr/share/jenkins/ref/create_ssh_keys.sh
 COPY print_public_key.sh /usr/share/jenkins/ref/print_public_key.sh
-COPY security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
-COPY init_credentials.groovy /usr/share/jenkins/ref/init.groovy.d/init_credentials.groovy
+COPY set_user.groovy /usr/share/jenkins/ref/init.groovy.d/set_user.groovy
+COPY set_ssh_key.groovy /usr/share/jenkins/ref/init.groovy.d/set_ssh_key.groovy
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt

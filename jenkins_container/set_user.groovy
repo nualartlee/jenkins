@@ -4,6 +4,8 @@ import jenkins.model.*
 import hudson.security.*
 import jenkins.security.s2m.AdminWhitelistRule
 
+println "Set User"
+
 def instance = Jenkins.getInstance()
 
 def user = new File("/run/secrets/jenkins-user").text.trim()
@@ -18,3 +20,5 @@ instance.setAuthorizationStrategy(strategy)
 instance.save()
 
 Jenkins.instance.getInjector().getInstance(AdminWhitelistRule.class).setMasterKillSwitch(false)
+
+println "User Set"
