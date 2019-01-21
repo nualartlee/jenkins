@@ -18,7 +18,11 @@ services:
           - jenkins-user
           - jenkins-pass
           - jenkins-key
+            uid: '1000'
+            gid: '1000'
           - jenkins-key.pub
+            uid: '1000'
+            gid: '1000'
         volumes:
           - jenkins_home:/var/jenkins_home
 

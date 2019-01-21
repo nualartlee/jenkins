@@ -18,6 +18,7 @@ chmod 660 secrets
 check_errs $? "Failed setting secret directory permissions"
 
 # Create passwords
+echo "Setting jenkins user"
 echo "manager" > secrets/jenkins-user.txt
 create_password secrets/jenkins-pass.txt 27
 if [ -e secrets/jenkins-key ]
