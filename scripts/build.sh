@@ -18,17 +18,9 @@ chmod 660 secrets
 check_errs $? "Failed setting secret directory permissions"
 
 # Create passwords
+echo "Setting jenkins user"
 echo "manager" > secrets/jenkins-user.txt
 create_password secrets/jenkins-pass.txt 27
-if [ -e secrets/jenkins-key ]
-then
-    echo "jenkins ssh key already exists"
-else
-    echo "creating jenkins ssh key"
-    ssh-keygen -t ed25519 -f secrets/jenkins-key -q -N ""
-fi
-chmod 644 secrets/jenkins-key
-check_errs $? "Failed setting jenkins-key permissions"
 
 # Ensure docker is running
 service docker start

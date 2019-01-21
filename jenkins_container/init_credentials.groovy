@@ -12,6 +12,13 @@ def instance = Jenkins.getInstance()
 
 Thread.start {
 
+
+    // Create a passphrase
+    def ssh_key_passphrase = org.apache.commons.lang.RandomStringUtils.randomAlphanumeric(27)
+
+    // Create keys if not already present
+    println "/usr/share/jenkins/ref/create_ssh_keys.sh $ssh_key_passphrase".execute().text
+
     def system_credentials_provider = SystemCredentialsProvider.getInstance()
 
     // Add global deployment credentials for SSH
@@ -20,9 +27,9 @@ Thread.start {
     def ssh_key_description = "SSH credentials for remote build commands"
     def ssh_key_scope = CredentialsScope.GLOBAL
     def ssh_key_id = "build-key"
-    def ssh_key_username = "jenkins"
-    def ssh_key_private_key_source = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource ("/run/secrets/jenkins-key")
-    def ssh_key_passphrase = null
+    def ssh_key_username = "manager"
+    def ssh_key_private_key_source = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource ("/var/jenkins_home/.ssh/jenkins-key")
+    // def ssh_key_passphrase = null
 
     // Add ssh key as private key type
     ssh_credentials_exist = false
