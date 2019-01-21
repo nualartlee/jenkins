@@ -19,8 +19,6 @@ services:
           - jenkins-pass
           - jenkins-key
           - jenkins-key.pub
-        volumes:
-          - jenkins_home:/var/jenkins_home
 
 secrets:
   certbot_email:
