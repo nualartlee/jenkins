@@ -3,8 +3,8 @@ FROM jenkins/jenkins:lts-alpine
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
 USER root
-RUN mkdir /.ssh
-RUN ssh-keygen -f /.ssh/jenkins-key -q -N ""
+RUN mkdir /var/jenkins_home/.ssh
+RUN ssh-keygen -f /var/jenkins_home/.ssh/jenkins-key -q -N ""
 RUN chown -R jenkins:jenkins /var/jenkins_home/.ssh
 USER jenkins
 
