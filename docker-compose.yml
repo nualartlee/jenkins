@@ -17,10 +17,10 @@ services:
         secrets:
           - jenkins-user
           - jenkins-pass
-          - jenkins-key
+          - source: jenkins-key
             uid: '1000'
             gid: '1000'
-          - jenkins-key.pub
+          - source: jenkins-key.pub
             uid: '1000'
             gid: '1000'
         volumes:
