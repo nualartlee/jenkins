@@ -20,7 +20,7 @@ Thread.start {
     def ssh_key_description = "SSH credentials for remote build commands"
     def ssh_key_scope = CredentialsScope.GLOBAL
     def ssh_key_id = "build-key"
-    def ssh_key_username = "jenkins"
+    def ssh_key_username = "manager"
     def ssh_key_private_key_source = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource ("/run/secrets/jenkins-key")
     def ssh_key_passphrase = null
 

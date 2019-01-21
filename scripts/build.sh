@@ -25,7 +25,7 @@ then
     echo "jenkins ssh key already exists"
 else
     echo "creating jenkins ssh key"
-    ssh-keygen -t ed25519 -f secrets/jenkins-key -q -N ""
+    ssh-keygen -f secrets/jenkins-key -q -N ""
 fi
 chmod 644 secrets/jenkins-key
 check_errs $? "Failed setting jenkins-key permissions"
