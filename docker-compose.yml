@@ -17,8 +17,6 @@ services:
         secrets:
           - jenkins-user
           - jenkins-pass
-          - jenkins-key
-          - jenkins-key.pub
 
 secrets:
   certbot_email:
@@ -27,10 +25,6 @@ secrets:
     file: ./secrets/jenkins-user.txt
   jenkins-pass:
     file: ./secrets/jenkins-pass.txt
-  jenkins-key:
-    file: ./secrets/jenkins-key
-  jenkins-key.pub:
-    file: ./secrets/jenkins-key.pub
 
 volumes:
   jenkins_home:
