@@ -7,3 +7,5 @@ COPY init_credentials.groovy /usr/share/jenkins/ref/init.groovy.d/init_credentia
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+
+RUN chown -R jenkins:jenkins /run/secrets

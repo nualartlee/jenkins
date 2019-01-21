@@ -17,12 +17,8 @@ services:
         secrets:
           - jenkins-user
           - jenkins-pass
-          - source: jenkins-key
-            uid: '1000'
-            gid: '1000'
-          - source: jenkins-key.pub
-            uid: '1000'
-            gid: '1000'
+          - jenkins-key
+          - jenkins-key.pub
         volumes:
           - jenkins_home:/var/jenkins_home
 
