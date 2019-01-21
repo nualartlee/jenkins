@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Creates ssh keys for jenkins
-
+# First argument is used as passphrase
 
 # Create an ssh directory
 if [ -e /var/jenkins_home/.ssh ]
@@ -18,5 +18,5 @@ then
     echo "jenkins ssh key already exists"
 else
     echo "creating jenkins ssh key"
-    ssh-keygen -f /var/jenkins_home/.ssh/jenkins-key -q -N ""
+    ssh-keygen -f /var/jenkins_home/.ssh/jenkins-key -q -N "$1"
 fi
