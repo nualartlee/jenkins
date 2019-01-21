@@ -64,7 +64,7 @@ docker-compose up -d &
 check_errs $? "Failed starting containers"
 
 # Allow for startup
-sleep 5
+sleep 10
 
 # Run any custom post_build script
 if [ -e scripts/post_build.sh ]
