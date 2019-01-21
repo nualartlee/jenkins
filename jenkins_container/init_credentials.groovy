@@ -21,7 +21,7 @@ Thread.start {
     def ssh_key_scope = CredentialsScope.GLOBAL
     def ssh_key_id = "build-key"
     def ssh_key_username = "manager"
-    def ssh_key_private_key_source = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource ("/run/secrets/jenkins-key")
+    def ssh_key_private_key_source = new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource ("/var/jenkins_home/.ssh/jenkins-key")
     def ssh_key_passphrase = null
 
     // Add ssh key as private key type
