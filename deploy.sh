@@ -66,6 +66,17 @@ check_errs $? "Failed starting containers"
 # Allow for startup
 sleep 5
 
+# Run any custom post_build script
+if [ -e scripts/post_build.sh ]
+then
+    echo "Running custom post_build script"
+    scripts/post_build.sh
+    check_errs $? "Custom post_build script failed"
+
+else
+    echo "No custom post_build scripts"
+fi
+
 echo
 echo "Deployment Completed"
 echo "Project is running"
