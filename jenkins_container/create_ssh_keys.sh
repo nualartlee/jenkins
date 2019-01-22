@@ -18,7 +18,7 @@ then
     echo "jenkins ssh key already exists"
 else
     echo "creating jenkins ssh key"
-    ssh-keygen -t ed25519 -f /var/jenkins_home/.ssh/jenkins-key -q -N "$1"
+    #ssh-keygen -t ed25519 -f /var/jenkins_home/.ssh/jenkins-key -q -N "$1"
     # If RSA is required
-    #ssh-keygen -t rsa -b 4096 -f /var/jenkins_home/.ssh/jenkins-key -q -N "$1"
+    ssh-keygen -t rsa -b 4096 -f /var/jenkins_home/.ssh/jenkins-key -q -N "$1"
 fi
