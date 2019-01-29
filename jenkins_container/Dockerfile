@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts-alpine
 
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Djava.awt.headless=true
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Djava.awt.headless=true \
 -Dmail.smtp.starttls.enable=true -Dmail.smtps.ssl.protocols=TLSv1.2"
 
 COPY create_ssh_keys.sh /usr/share/jenkins/ref/create_ssh_keys.sh
