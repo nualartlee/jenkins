@@ -5,6 +5,10 @@
 #
 #
 
+
+# Work from script's directory
+cd "${0%/*}"
+
 # Import common functions
 source scripts/common.sh
 
