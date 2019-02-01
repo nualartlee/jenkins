@@ -12,10 +12,13 @@ cd "${0%/*}"
 # Import common functions
 source scripts/common.sh
 
+# Assume the project's name is the same as the containing directory
+projectname=${PWD##*/}
+
 # Print header
 clear
 echo "====================================="
-echo "      Revert To Previous Version"
+echo "      Revert $projectname"
 echo
 
 # Check user is root
