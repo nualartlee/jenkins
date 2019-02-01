@@ -5,6 +5,11 @@
 # Import common functions
 source scripts/common.sh
 
+# Check if required packages are installed
+echo "Checking required packages"
+check_package pwgen
+echo
+
 # Create a directory to store passwords
 if [ -e secrets ]
 then
