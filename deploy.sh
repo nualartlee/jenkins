@@ -9,27 +9,35 @@
 # The project should already be present under git with remote origin
 # set up before running this script
 
+# Work from script's directory
+cd "${0%/*}"
+
 # Import common functions
 source scripts/common.sh
+
+# Assume the project's name is the same as the containing directory
+projectname=${PWD##*/}
 
 # Print header
 clear
 echo "====================================="
-echo "           Deploy Project"
+echo "           Deploy $projectname"
 echo
 
 # Check user is root
 check_errs $EUID "This script must be run as root"
 
+# Get the owner of the project
+projectowner=$(ls -ld $PWD | awk '{print $3}')
+
 # Check if required packages are installed
 echo "Checking required packages"
-check_package pwgen
 check_package docker
 check_package docker-compose
 echo
 
 # Pull latest version from remote origin
-git pull
+sudo -u $projectowner git pull
 check_errs $? "Unable to pull from remote repository"
 
 # Run any custom build script

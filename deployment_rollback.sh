@@ -6,6 +6,9 @@
 # Pulls and deploys the previous version of the current branch from remote origin.
 #
 
+# Work from script's directory
+cd "${0%/*}"
+
 # Import common functions
 source scripts/common.sh
 
@@ -18,23 +21,19 @@ echo
 # Check user is root
 check_errs $EUID "This script must be run as root"
 
-# Check if required packages are installed
-echo "Checking required packages"
-check_package pwgen
-check_package docker
-check_package docker-compose
-echo
+# Get the owner of the project
+projectowner=$(ls -ld $PWD | awk '{print $3}')
 
-# Determine previous version git hash
-previous=$(git log --format=%H | sed -n 2p)
+# Determine previous version sudo -u $projectowner git hash
+previous=$(sudo -u $projectowner git log --format=%H | sed -n 2p)
 check_errs $? "Unable to determine previous git version hash"
 
 # Rollback previous version
-git reset $previous
+sudo -u $projectowner git reset $previous
 check_errs $? "Unable to git-reset previous version from repository"
 
 # Stash current changes
-git stash
+sudo -u $projectowner git stash
 check_errs $? "Unable to stash changes in repository"
 
 # Run any custom build script
